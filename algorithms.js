@@ -13,6 +13,22 @@ function GenerateArray(arrayLength, maxNumber) {
 
 let randomizedArray = GenerateArray(arrayLength, maxNumber);
 
+const counts = {};
+randomizedArray.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
+
+function totalDuplicates(counts) {
+    let totalDuplicates = 0;
+    for (let i in counts) {
+        if (counts[i] > 1) {
+            totalDuplicates += counts[i];
+        }
+    }
+    return totalDuplicates;
+}
+
+let duplicatesTotal = totalDuplicates(counts);
+
+
 function SortArray(array){
     swapCounter = 0
     console.log("Unsorted Array:");
@@ -49,8 +65,8 @@ function SearchArray(array, arrayLength){
     let low = 0
     let searchCounter = 0
     
-    var probability = (1 / Math.pow(10, digits)) * arrayLength
-    console.log("The probability of guessing a number in the array is", probability)
+    var probability = ((1 / Math.pow(10, digits)) * (arrayLength - duplicatesTotal)) * 100
+    console.log("The probability of guessing a number in the array is", probability, "%")
 
     const num = prompt("What number should I find? ");
     let searchNum = Number(num)
