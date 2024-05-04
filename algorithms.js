@@ -49,7 +49,7 @@ function SearchArray(array, arrayLength){
     let low = 0
     let searchCounter = 0
     
-    var probability = (1 / (10 ^ digits)) * arrayLength
+    var probability = (1 / Math.pow(10, digits)) * arrayLength
     console.log("The probability of guessing a number in the array is", probability)
 
     const num = prompt("What number should I find? ");
