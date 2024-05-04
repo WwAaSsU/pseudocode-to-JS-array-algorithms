@@ -1,14 +1,19 @@
 const prompt = require('prompt-sync')({sigint: true});
 
+const length = prompt("How long should the array be? ")
+let arrayLength = Number(length);
+
+const max = prompt("What should be the largest possible number in the array? ")
+let maxNumber = Number(max);
+
+function GenerateArray(arrayLength, maxNumber) {
+    return Array.from({length: arrayLength}, () => Math.floor(Math.random() * maxNumber));
+}
+
+let randomizedArray = GenerateArray(arrayLength, maxNumber);
+
 function SortArray(array){
-
-    const arrayLength = array.length;
     swapCounter = 0
-
-    // console.log("Un-Sorted Array:");
-    // console.log(array);
-    // console.log("Number of Items to Swap:");
-    // console.log(arrayLength);
 
     for (let i = 0; i < arrayLength; i++) {
 
@@ -22,15 +27,16 @@ function SortArray(array){
         };
     };
 
+    console.log("Sorted Array:");
+    console.log(array);
+    console.log("Moves needed:", swapCounter);  
+        
     SearchArray(array, arrayLength)
     return array;
 };
 
-sortedArray = SortArray([4, 6, 8, 2, 3, 4, ]);
+randomizedArray = SortArray(randomizedArray);
 
-// console.log("Sorted Array:");
-// console.log(sortedArray);
-// console.log("Moves needed:", swapCounter);  
 
 function SearchArray(array, arrayLength){
 
@@ -39,10 +45,6 @@ function SearchArray(array, arrayLength){
     let high = arrayLength - 1
     let low = 0
     let searchCounter = 0
-
-    console.log("length", arrayLength)
-    console.log("high", high)
-    console.log("Array", array)
     
     const num = prompt("What number should I find? ");
     let searchNum = Number(num)
@@ -50,10 +52,10 @@ function SearchArray(array, arrayLength){
     while (found = false, low <= high){
 
         let mid = Math.round((high + low) / 2);
-        console.log("mid", mid)
+        console.log('Mid #', searchCounter, '=', mid, "which is =", array[mid]);
 
         if (array[mid] == searchNum){
-
+            searchCounter++;
             found = true;
             answer = mid
             console.log(searchNum, "is in the array and has index:", answer)
@@ -73,6 +75,8 @@ function SearchArray(array, arrayLength){
     }
     if (!answer){
 
-        console.log(searchNum, "is not in the array")
+        console.log(searchNum, "is not in the array");
+        console.log("Moves needed:", searchCounter);
+
     }
 }
