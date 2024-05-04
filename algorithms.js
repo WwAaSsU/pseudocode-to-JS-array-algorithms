@@ -30,19 +30,32 @@ console.log("Moves needed:", swapcounter);
 function SearchArray(array){
     const sortedArrayLength = array.length;
     let found = false
-
     let searchNum = prompt("What number would you like to search for?");
+    let answer = 0
 
     let high = sortedArrayLength - 1
     let low = 0
     while (found = false, low <= high){
         let mid = (high + low)/2
-        if (mid = searchNum){
+        if (sortedArray[mid] = searchNum){
             found = true;
-            
+            answer = mid
+            return answer;
         }
+        else if (searchNum < sortedArray[mid]){
+            high = mid - 1
+        }
+        else if (searchNum > sortedArray[mid]){
+            low = mid + 1
+        }
+    }
 
+    if (!answer){
+        console.log(searchNum, "is not in the array")
+    }
+    else    {
+        console.log(searchNum, "is in the array and has index:", answer)
     }
 }
 
-SortArray(sortedArray, arrayLength)
+SearchArray(sortedArray)
