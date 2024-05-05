@@ -48,7 +48,7 @@ function SortArray(array){
 
     // console.log("Sorted Array:");
     // console.log(array);
-    console.log("Moves needed:", swapCounter);  
+    // console.log("Moves needed:", swapCounter);  
         
     SearchArray(array, arrayLength)
     return array;
@@ -57,16 +57,17 @@ function SortArray(array){
 randomizedArray = SortArray(randomizedArray);
 
 
+
 function SearchArray(array, arrayLength){
 
     let found = false
     let answer = 0
     let high = arrayLength - 1
     let low = 0
-    let searchCounter = 0
+    var searchCounter = 1
     
     var probability = ((1 / Math.pow(10, digits)) * (arrayLength - duplicatesTotal)) * 100
-    console.log("The probability of guessing a number in the array is", probability, "%")
+    console.log("The probability of guessing a number in the array is", probability.toFixed(2), "%")
 
     const num = prompt("What number should I find? ");
     let searchNum = Number(num)
@@ -94,15 +95,16 @@ function SearchArray(array, arrayLength){
             low = mid + 1
         }
 
-        searchCounter++;
+        
     }
     if (!answer){
 
         console.log(searchNum, "is not in the array");
         var difference = Math.abs((searchNum-array[mid]));
-        console.log("Moves needed:", searchCounter);
+        // console.log("Moves needed:", searchCounter);
         console.log('you were', difference, 'away from guessing a number')
         console.log('try again!')
+        searchCounter++;
         SearchArray(array, arrayLength)
     }
 }
