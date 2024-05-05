@@ -31,8 +31,8 @@ let duplicatesTotal = totalDuplicates(counts);
 
 function SortArray(array){
     swapCounter = 0
-    console.log("Unsorted Array:");
-    console.log(array);
+    // console.log("Unsorted Array:");
+    // console.log(array);
 
     for (let i = 0; i < arrayLength; i++) {
 
@@ -46,8 +46,8 @@ function SortArray(array){
         };
     };
 
-    console.log("Sorted Array:");
-    console.log(array);
+    // console.log("Sorted Array:");
+    // console.log(array);
     console.log("Moves needed:", swapCounter);  
         
     SearchArray(array, arrayLength)
@@ -70,17 +70,18 @@ function SearchArray(array, arrayLength){
 
     const num = prompt("What number should I find? ");
     let searchNum = Number(num)
+    let mid = 0
 
     while (found = false, low <= high){
 
-        let mid = Math.round((high + low) / 2);
-        console.log('Mid #', searchCounter, '=', mid, "which is =", array[mid]);
+        mid = Math.round((high + low) / 2);
+        // console.log('Mid #', searchCounter, '=', mid, "which is =", array[mid]);
 
         if (array[mid] == searchNum){
             searchCounter++;
             found = true;
             answer = mid
-            console.log(searchNum, "is in the array and has index:", answer)
+            console.log('CONGRATULATIONS!!!', searchNum, "is in the array and has index:", answer)
             console.log("Moves needed:", searchCounter);
             return answer;
         }
@@ -98,7 +99,10 @@ function SearchArray(array, arrayLength){
     if (!answer){
 
         console.log(searchNum, "is not in the array");
+        var difference = Math.abs((searchNum-array[mid]));
         console.log("Moves needed:", searchCounter);
-
+        console.log('you were', difference, 'away from guessing a number')
+        console.log('try again!')
+        SearchArray(array, arrayLength)
     }
 }
